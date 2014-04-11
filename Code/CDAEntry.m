@@ -280,4 +280,23 @@
     }
 }
 
+- (void) encodeWithCoder:(NSCoder *)encoder
+{
+    [encoder encodeObject:self.localizedFields forKey:@"localizedFields"];
+    [encoder encodeObject:self.locale forKey:@"locale"];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    self = [super init];
+    
+    if (self)
+    {
+        self.localizedFields = [decoder decodeObjectForKey:@"localizedFields"];
+        self.locale = [decoder decodeObjectForKey:@"locale"];
+    }
+    
+    return self;
+}
+
 @end
