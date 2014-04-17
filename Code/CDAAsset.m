@@ -168,6 +168,7 @@ const CGFloat CDAImageQualityOriginal = 0.0;
 {
     [encoder encodeObject:self.localizedFields forKey:@"localizedFields"];
     [encoder encodeObject:self.locale forKey:@"locale"];
+    [encoder encodeObject:self.sys forKey:@"sys"];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder
@@ -178,9 +179,15 @@ const CGFloat CDAImageQualityOriginal = 0.0;
     {
         self.localizedFields = [decoder decodeObjectForKey:@"localizedFields"];
         self.locale = [decoder decodeObjectForKey:@"locale"];
+        self.sys = [decoder decodeObjectForKey:@"sys"];
     }
     
     return self;
+}
+
+-(BOOL)isEqual:(CDAEntry*)object
+{
+    return [self.fields isEqual:object.fields] && [self.identifier isEqual:object.identifier];
 }
 
 @end
