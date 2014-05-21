@@ -27,7 +27,6 @@
 
 @property (nonatomic, readonly) BOOL isLink;
 @property (nonatomic) NSDate* lastFetchedDate;
-@property (nonatomic) NSDictionary* sys;
 
 @end
 

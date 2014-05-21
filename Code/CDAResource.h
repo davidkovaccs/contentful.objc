@@ -63,6 +63,7 @@
  request the missing data by invoking `resolveWithSuccess:failure:` on it.
  */
 @property (nonatomic, readonly) BOOL fetched;
+@property (nonatomic) NSDictionary* sys;
 
 /**
  *  Resolve a Link by fetching the actual data of the Resource. If the data of the Resource is already
