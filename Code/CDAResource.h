@@ -19,7 +19,6 @@
 /** The `sys.id` of this Resource, used to uniquely identify it in its Space. */
 @property (nonatomic, readonly) NSString* identifier;
 /** Value of all system properties of this Resource. */
-@property (nonatomic, readonly) NSDictionary* sys;
 
 /** @name Comparing Resources */
 
