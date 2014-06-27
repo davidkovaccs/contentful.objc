@@ -20,8 +20,8 @@ NSString* CDASquashWhitespacesInString(NSString* string);
 #pragma mark -
 
 NSString* CDACacheDirectory() {
-    NSString *cachesPath = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"com.contentful.sdk"];
-    
+    NSString *cachesPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+
     BOOL isDirectory = NO;
     if ([[NSFileManager defaultManager] fileExistsAtPath:cachesPath isDirectory:&isDirectory]) {
         NSCAssert(isDirectory, @"Caches directory '%@' is a file.", cachesPath);
