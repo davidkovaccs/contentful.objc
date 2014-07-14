@@ -97,22 +97,13 @@
     NSMutableDictionary* entries = [@{} mutableCopy];
     for (NSDictionary* possibleEntry in JSONObject[@"includes"][@"Entry"]) {
         CDAEntry* entry = [[CDAEntry alloc] initWithDictionary:possibleEntry client:self.client];
-        [entry resolveLinksWithIncludedAssets:assets entries:nil];
         entries[entry.identifier] = entry;
     }
 
-    for (NSDictionary* possibleEntry in JSONObject[@"includes"][@"Entry"]) {
-        CDAEntry* entry = [[CDAEntry alloc] initWithDictionary:possibleEntry client:self.client];
+    for (CDAEntry* entry in entries.allValues) {
         [entry resolveLinksWithIncludedAssets:assets entries:entries];
-        entries[entry.identifier] = entry;
     }
 
-    for (NSDictionary* possibleEntry in JSONObject[@"includes"][@"Entry"]) {
-        CDAEntry* entry = [[CDAEntry alloc] initWithDictionary:possibleEntry client:self.client];
-        [entry resolveLinksWithIncludedAssets:assets entries:entries];
-        entries[entry.identifier] = entry;
-    }
-    
     NSAssert([JSONObject isKindOfClass:[NSDictionary class]], @"JSON result is not a dictionary");
     CDAResource* resource = [CDAResource resourceObjectForDictionary:JSONObject client:self.client];
     [resource resolveLinksWithIncludedAssets:assets entries:entries];
