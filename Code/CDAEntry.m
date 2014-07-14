@@ -56,7 +56,7 @@
 -(NSString *)description {
     /* Better than nothing, but has some \n and \t embedded because of 
      http://www.cocoabuilder.com/archive/cocoa/197297-who-broke-nslog-on-leopard.html#197302 */
-    return [NSString stringWithFormat:@"CDAEntry %@ with fields:%@", self.identifier, self.fields];
+    return [NSString stringWithFormat:@"CDAEntry %@", self.identifier];
 }
 
 -(NSDictionary *)fields {
