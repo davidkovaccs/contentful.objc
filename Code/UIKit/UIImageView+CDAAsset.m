@@ -37,8 +37,12 @@ static const char* CDAOfflineCachingKey = "CDAOfflineCachingKey";
 -(void)cda_handleCachingForAsset:(CDAAsset*)asset {
     if (self.offlineCaching_cda) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [UIImagePNGRepresentation(self.image) writeToFile:CDACacheFileNameForResource(asset)
-                                                   atomically:YES];
+            NSError *error;
+            if (![UIImagePNGRepresentation(self.image) writeToFile:CDACacheFileNameForResource(asset)
+                                                           options:NSDataWritingAtomic error:&error])
+            {
+                NSLog(@"ERROR while saving images - %@", error);
+            }
         });
     }
 }
