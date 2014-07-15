@@ -237,6 +237,11 @@
     }
 }
 
+-(CDAClient *)getClient
+{
+    return _client;
+}
+
 -(BOOL)updatedAfterDate:(NSDate *)date {
     return [(NSDate*)self.sys[@"updatedAt"] compare:date] == NSOrderedDescending;
 }

@@ -303,7 +303,7 @@
 
 -(BOOL)isEqual:(CDAEntry*)object
 {
-    return [self.fields isEqual:object.fields] && [self.identifier isEqual:object.identifier];
+    return [self.identifier isEqual:object.identifier] && [self.sys[@"updatedAt"] isEqual:object.sys[@"updatedAt"]];
 }
 
 @end
