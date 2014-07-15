@@ -32,6 +32,7 @@
 -(BOOL)isEqualToResource:(CDAResource*)resource;
 
 -(void)setClient:(CDAClient *)client;
+-(CDAClient *)getClient;
 
 /** @name Persisting Resources */
 
