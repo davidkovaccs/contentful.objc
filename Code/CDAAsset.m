@@ -192,7 +192,7 @@ const CGFloat CDAImageQualityOriginal = 0.0;
 
 -(BOOL)isEqual:(CDAEntry*)object
 {
-    return [self.identifier isEqual:object.identifier] && [self.sys[@"udpatedAt"] isEqual:object.sys[@"updatedAt"]];
+    return [self.identifier isEqual:object.identifier] && [self.sys[@"updatedAt"] isEqual:object.sys[@"updatedAt"]];
 }
 
 @end
