@@ -161,7 +161,12 @@ const CGFloat CDAImageQualityOriginal = 0.0;
     if (!url) {
         return nil;
     }
-    return [NSURL URLWithString:[NSString stringWithFormat:@"%@:%@", self.client.protocol, url]];
+    NSString* protocol = self.client.protocol;
+
+    if (!protocol)
+        protocol = @"http";
+
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@:%@", protocol, url]];
 }
 
 - (void) encodeWithCoder:(NSCoder *)encoder
