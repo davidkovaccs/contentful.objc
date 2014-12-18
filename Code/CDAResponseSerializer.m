@@ -69,7 +69,28 @@
 
 -(id)responseObjectForResponse:(NSURLResponse *)response
                           data:(NSData *)data
-                         error:(NSError **)error {
+                         error:(NSError **)error
+{
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"CACHE_HASHES"])
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:[NSMutableDictionary new] forKey:@"CACHE_HASHES"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+
+    NSNumber *oldhash = [[[NSUserDefaults standardUserDefaults] objectForKey:@"CACHE_HASHES"] objectForKey:[response.URL absoluteString]];
+    NSMutableDictionary *caches = [[[NSUserDefaults standardUserDefaults] objectForKey:@"CACHE_HASHES"] mutableCopy];
+    [caches setObject:@([data length]) forKey:[response.URL absoluteString]];
+    [[NSUserDefaults standardUserDefaults] setObject:caches forKey:@"CACHE_HASHES"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
+    NSLog(@"CACHEURL: %@, %d, %d", response.URL, [data length], oldhash.integerValue);
+
+    if ([data length] == oldhash.integerValue)
+    {
+        NSLog(@"CACHE IS VALID");
+        return nil;
+    }
+
     id JSONObject = [super responseObjectForResponse:response data:data error:error];
     if (!JSONObject || ![JSONObject isKindOfClass:[NSDictionary class]]) {
         return nil;
