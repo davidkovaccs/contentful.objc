@@ -85,7 +85,7 @@
 
     NSLog(@"CACHEURL: %@, %d, %d", response.URL, [data length], oldhash.integerValue);
 
-    if ([data length] == oldhash.integerValue)
+    if ([data length] == oldhash.integerValue && [data length] < 1000)
     {
         NSLog(@"CACHE IS VALID");
         return nil;
